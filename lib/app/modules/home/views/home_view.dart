@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clone_shopee/model_promo.dart';
 
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -10,13 +11,18 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
+    final CarouselController _carouselController = CarouselController();
     return Obx(
       () {
         return Scaffold(
           body: CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
+                pinned: true,
+                snap: false,
+                floating: false,
                 title: Container(
+                  // height: 50,
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -28,7 +34,11 @@ class HomeView extends GetView<HomeController> {
                       Icon(Icons.search, color: Colors.grey),
                       SizedBox(width: 5),
                       Expanded(
-                        child: TextField(
+                        child:
+                            //  Text('Shopee Cloning',
+                            //     style: TextStyle(
+                            //         color: Color(0xfff0664b), fontSize: 14)),
+                            TextField(
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: TextStyle(
@@ -53,34 +63,68 @@ class HomeView extends GetView<HomeController> {
                     child: Icon(MdiIcons.chatProcessingOutline),
                   ),
                 ],
-                backgroundColor: Colors.transparent,
-                expandedHeight: 200,
-                flexibleSpace: Stack(
-                  children: [
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        height: Get.height * 0.25 + 16,
-                        viewportFraction: 1.5,
-                        autoPlay: true,
+                backgroundColor: Color(0xffed4d2b),
+                expandedHeight: 150,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Stack(
+                    children: [
+                      CarouselSlider(
+                        carouselController: _carouselController,
+                        options: CarouselOptions(
+                          viewportFraction: 1.5,
+                          height: 175,
+                          autoPlay: true,
+                          onPageChanged: (index, reason) =>
+                              controller.currentSlider = index,
+                        ),
+                        items: promoCarousell.map((i) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Container(
+                                child: Image.network(
+                                  '$i',
+                                  fit: BoxFit.fill,
+                                ),
+                              );
+                            },
+                          );
+                        }).toList(),
                       ),
-                      items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                                width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                decoration: BoxDecoration(color: Colors.red),
-                                child: Center(
-                                  child: Text(
-                                    'text $i',
-                                    style: TextStyle(fontSize: 16.0),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: promoCarousell.asMap().entries.map<Widget>(
+                            (entry) {
+                              return GestureDetector(
+                                child: Container(
+                                  width: 5,
+                                  height: 5,
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 4),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: controller.currentSlider == entry.key
+                                        ? Color(0xffed4d2b)
+                                        : Colors.grey[300],
                                   ),
-                                ));
-                          },
-                        );
-                      }).toList(),
-                    ),
-                  ],
+                                ),
+                              );
+                            },
+                          ).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return ListTile(
+                      title: Text('Element $index'),
+                    );
+                  },
                 ),
               ),
             ],
