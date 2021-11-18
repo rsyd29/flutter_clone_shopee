@@ -17,7 +17,7 @@ class HomeView extends GetView<HomeController> {
             slivers: <Widget>[
               SliverAppBar(
                 title: Container(
-                  padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(4),
@@ -26,15 +26,16 @@ class HomeView extends GetView<HomeController> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(Icons.search, color: Colors.grey),
-                      SizedBox(
-                        width: 5,
-                      ),
+                      SizedBox(width: 5),
                       Expanded(
-                        child: Text(
-                          'Shopee Cloning',
-                          style: TextStyle(
-                            color: Color(0xfff0664b),
-                            fontSize: 14,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(
+                              color: Color(0xfff0664b),
+                              fontSize: 14,
+                            ),
+                            hintText: 'Shopee Cloning',
                           ),
                         ),
                       ),
@@ -42,8 +43,6 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                 ),
-                backgroundColor: Colors.transparent,
-                expandedHeight: 200,
                 actions: [
                   Container(
                     margin: EdgeInsets.only(right: 4),
@@ -54,6 +53,8 @@ class HomeView extends GetView<HomeController> {
                     child: Icon(MdiIcons.chatProcessingOutline),
                   ),
                 ],
+                backgroundColor: Colors.transparent,
+                expandedHeight: 200,
                 flexibleSpace: Stack(
                   children: [
                     CarouselSlider(
