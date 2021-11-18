@@ -19,26 +19,20 @@ class HomeView extends GetView<HomeController> {
             slivers: <Widget>[
               SliverAppBar(
                 pinned: true,
-                snap: false,
-                floating: false,
                 title: Container(
-                  // height: 50,
                   padding: EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(4),
                   ),
+                  // NOTE: Search Bar
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(Icons.search, color: Colors.grey),
                       SizedBox(width: 5),
                       Expanded(
-                        child:
-                            //  Text('Shopee Cloning',
-                            //     style: TextStyle(
-                            //         color: Color(0xfff0664b), fontSize: 14)),
-                            TextField(
+                        child: TextField(
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintStyle: TextStyle(
@@ -53,26 +47,27 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                 ),
-                actions: [
-                  Container(
-                    margin: EdgeInsets.only(right: 4),
-                    child: Icon(MdiIcons.cartOutline),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 4, right: 8),
-                    child: Icon(MdiIcons.chatProcessingOutline),
-                  ),
-                ],
+                // actions: [
+                //   Container(
+                //     margin: EdgeInsets.only(right: 4),
+                //     child: Icon(MdiIcons.cartOutline),
+                //   ),
+                //   Container(
+                //     margin: EdgeInsets.only(left: 4, right: 8),
+                //     child: Icon(MdiIcons.chatProcessingOutline),
+                //   ),
+                // ],
                 backgroundColor: Color(0xffed4d2b),
-                expandedHeight: 150,
+                expandedHeight: 140,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Stack(
                     children: [
+                      // NOTE: Create Carousel Slider
                       CarouselSlider(
                         carouselController: _carouselController,
                         options: CarouselOptions(
                           viewportFraction: 1.5,
-                          height: 175,
+                          height: 165,
                           autoPlay: true,
                           onPageChanged: (index, reason) =>
                               controller.currentSlider = index,
@@ -90,6 +85,7 @@ class HomeView extends GetView<HomeController> {
                           );
                         }).toList(),
                       ),
+                      // NOTE: Point Carousel Promo
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Row(
@@ -118,6 +114,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
               ),
+              // TODO: Create All Body Content
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -129,6 +126,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ],
           ),
+          // NOTE: BottomNavigationBar
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: Colors.white,
             selectedItemColor: Color(0xffe74b2f),

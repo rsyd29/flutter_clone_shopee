@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
   final _tabIndex = 0.obs;
   final _currentSlider = 0.obs;
 
