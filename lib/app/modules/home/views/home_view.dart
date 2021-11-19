@@ -21,7 +21,8 @@ class HomeView extends GetView<HomeController> {
             SliverAppBar(
               pinned: true,
               title: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8),
+                height: 35,
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(4),
@@ -33,7 +34,7 @@ class HomeView extends GetView<HomeController> {
                     suffixIcon:
                         Icon(MdiIcons.cameraOutline, color: Colors.grey),
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(vertical: 16),
+                    contentPadding: EdgeInsets.symmetric(vertical: 11),
                     hintStyle: TextStyle(
                       color: Color(0xfff0664b),
                       fontSize: 14,
@@ -42,16 +43,16 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
               ),
-              // actions: [
-              //   Container(
-              //     margin: EdgeInsets.only(right: 4),
-              //     child: Icon(MdiIcons.cartOutline),
-              //   ),
-              //   Container(
-              //     margin: EdgeInsets.only(left: 4, right: 8),
-              //     child: Icon(MdiIcons.chatProcessingOutline),
-              //   ),
-              // ],
+              actions: [
+                Container(
+                  margin: EdgeInsets.only(right: 4),
+                  child: Icon(MdiIcons.cartOutline),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 4, right: 8),
+                  child: Icon(MdiIcons.chatProcessingOutline),
+                ),
+              ],
               backgroundColor: Color(0xffed4d2b),
               expandedHeight: Get.height * 0.33,
               flexibleSpace: FlexibleSpaceBar(
