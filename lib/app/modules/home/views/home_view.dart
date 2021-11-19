@@ -33,7 +33,7 @@ class HomeView extends GetView<HomeController> {
                     suffixIcon:
                         Icon(MdiIcons.cameraOutline, color: Colors.grey),
                     border: InputBorder.none,
-                    // contentPadding: EdgeInsets.only(),
+                    contentPadding: EdgeInsets.symmetric(vertical: 16),
                     hintStyle: TextStyle(
                       color: Color(0xfff0664b),
                       fontSize: 14,
@@ -114,6 +114,7 @@ class HomeView extends GetView<HomeController> {
                         ).toList(),
                       ),
                     ),
+                    // NOTE: QR Code, Saldo, Koin
                     Positioned(
                       top: Get.height * 0.26,
                       left: 0,
@@ -242,7 +243,7 @@ class HomeView extends GetView<HomeController> {
                   Stack(
                     children: [
                       Container(
-                        height: Get.height * 0.45,
+                        height: Get.height * 0.3,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
