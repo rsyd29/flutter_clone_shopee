@@ -115,13 +115,127 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               // TODO: Create All Body Content
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return ListTile(
-                      title: Text('Element $index'),
-                    );
-                  },
+              SliverToBoxAdapter(
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          height: Get.height * 0.48,
+                          decoration: BoxDecoration(
+                            color: Color(0xff1d58b2),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 16),
+                          padding: EdgeInsets.all(8),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  controller.scanQR();
+                                  print('Buka QR Scan');
+                                },
+                                child: Container(
+                                  child: Icon(
+                                    MdiIcons.qrcodeScan,
+                                    color: Color(0xffb2b2b2),
+                                    size: 20,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: 24,
+                                width: 1,
+                                color: Colors.grey[300],
+                              ),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          MdiIcons.walletOutline,
+                                          size: 16,
+                                          color: Color(0xffff5722),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          'Rp27.000',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      'Isi Saldo ShopeePay',
+                                      style: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                height: 24,
+                                width: 1,
+                                color: Colors.grey[300],
+                              ),
+                              Container(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          MdiIcons.bitcoin,
+                                          size: 16,
+                                          color: Color(0xffe4b641),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text(
+                                          '70 Koin',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      'Klaim koin di sini',
+                                      style: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
+                  ],
                 ),
               ),
             ],
