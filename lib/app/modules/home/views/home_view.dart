@@ -53,16 +53,24 @@ class HomeView extends GetView<HomeController> {
               //   ),
               // ],
               backgroundColor: Color(0xffed4d2b),
-              expandedHeight: Get.height * 0.2,
+              expandedHeight: Get.height * 0.33,
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   children: [
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: Get.height * 0.33,
+                        color: Colors.white,
+                        // color: Colors.transparent,
+                      ),
+                    ),
                     // NOTE: Create Carousel Slider
                     CarouselSlider(
                       carouselController: _carouselController,
                       options: CarouselOptions(
                         viewportFraction: 1,
-                        height: Get.height * 0.25,
+                        height: Get.height * 0.28,
                         autoPlay: true,
                         onPageChanged: (index, reason) =>
                             controller.currentSlider = index,
@@ -80,8 +88,10 @@ class HomeView extends GetView<HomeController> {
                       }).toList(),
                     ),
                     // NOTE: Point Carousel Promo
-                    Align(
-                      alignment: Alignment.bottomCenter,
+                    Positioned(
+                      top: Get.height * 0.23,
+                      left: 0,
+                      right: 0,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: promoCarousell.asMap().entries.map<Widget>(
@@ -104,34 +114,26 @@ class HomeView extends GetView<HomeController> {
                         ).toList(),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            // TODO: Create All Body Content
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: Get.height * 0.45,
-                        decoration: BoxDecoration(
-                          color: Color(0xff1d58b2),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            bottomRight: Radius.circular(20),
-                          ),
-                        ),
-                      ),
-                      // NOTE: Create QR Code, Saldo, and Koin
-                      Container(
+                    Positioned(
+                      top: Get.height * 0.26,
+                      left: 0,
+                      right: 0,
+                      child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 16),
                         padding: EdgeInsets.all(8),
                         height: 50,
                         decoration: BoxDecoration(
                           color: Color(0xffffffff),
                           borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 3,
+                              blurRadius: 3,
+                              offset:
+                                  Offset(0, 2), // changes position of shadow
+                            ),
+                          ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -227,7 +229,29 @@ class HomeView extends GetView<HomeController> {
                             )
                           ],
                         ),
-                      )
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            // TODO: Create All Body Content
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        height: Get.height * 0.45,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                          border: Border.all(color: Colors.white),
+                        ),
+                      ),
                     ],
                   ),
                   Container(
