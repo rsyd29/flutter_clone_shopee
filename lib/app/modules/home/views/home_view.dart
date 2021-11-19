@@ -23,7 +23,7 @@ class HomeView extends GetView<HomeController> {
               title: Container(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(0.95),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 // NOTE: Search Bar
@@ -67,20 +67,19 @@ class HomeView extends GetView<HomeController> {
                     CarouselSlider(
                       carouselController: _carouselController,
                       options: CarouselOptions(
-                        viewportFraction: 1.5,
+                        viewportFraction: 1,
                         height: Get.height * 0.25,
                         autoPlay: true,
                         onPageChanged: (index, reason) =>
                             controller.currentSlider = index,
                       ),
-                      items: promoCarousell.map((i) {
+                      items: promoCarousell.map((image) {
                         return Builder(
                           builder: (BuildContext context) {
-                            return Container(
-                              child: Image.network(
-                                '$i',
-                                fit: BoxFit.fill,
-                              ),
+                            return Image.asset(
+                              '$image',
+                              fit: BoxFit.cover,
+                              width: Get.width,
                             );
                           },
                         );
@@ -335,8 +334,8 @@ class HomeView extends GetView<HomeController> {
                                       children: [
                                         Container(
                                           height: Get.height * 0.178,
-                                          child: Image.network(
-                                            'https://cf.shopee.co.id/file/639ae14a456a915a007295a9d08873e6',
+                                          child: Image.asset(
+                                            'assets/earphone.jpeg',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -482,8 +481,8 @@ class HomeView extends GetView<HomeController> {
                                       children: [
                                         Container(
                                           height: Get.height * 0.143,
-                                          child: Image.network(
-                                            'https://cf.shopee.co.id/file/d5b194eeaba3113b5044c02e91927d14',
+                                          child: Image.asset(
+                                            'assets/teflon.jpeg',
                                             fit: BoxFit.cover,
                                           ),
                                         ),
