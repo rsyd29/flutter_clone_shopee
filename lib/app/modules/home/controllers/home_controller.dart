@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -49,9 +51,47 @@ class HomeController extends GetxController {
     }
   }
 
+  /// NOTE: Create countdown timer for flash sale
+  // TODO: FIXED: Timer tidak bergerak
+  static const countdownDuration = Duration(hours: 1);
+  final duration = Duration().obs;
+  Rxn<Timer> timer = Rxn<Timer>();
+
+  final _isCountdown = true.obs;
+  set isCountdown(value) => this._isCountdown.value = value;
+  get isCountdown => this._isCountdown.value;
+
+  void addTime() {
+    final addSeconds = _isCountdown.value ? -1 : 1;
+
+    final seconds = duration.value.inSeconds + addSeconds;
+    if (seconds < 0) {
+      timer.value?.cancel();
+    } else {
+      duration.value = Duration(seconds: seconds);
+    }
+    update();
+  }
+
+  void startTimer() {
+    timer.value = Timer.periodic(Duration(seconds: 1), (_) => addTime());
+    update();
+  }
+
+  void reset() {
+    if (isCountdown) {
+      duration.value = countdownDuration;
+    } else {
+      duration.value = Duration();
+    }
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();
+    startTimer();
+    reset();
   }
 
   @override
