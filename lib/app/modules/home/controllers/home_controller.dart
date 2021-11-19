@@ -52,8 +52,7 @@ class HomeController extends GetxController {
   }
 
   /// NOTE: Create countdown timer for flash sale
-  // TODO: FIXED: Timer tidak bergerak
-  static const countdownDuration = Duration(hours: 1);
+  static const countdownDuration = Duration(hours: 2);
   final duration = Duration().obs;
   Rxn<Timer> timer = Rxn<Timer>();
 
@@ -70,12 +69,10 @@ class HomeController extends GetxController {
     } else {
       duration.value = Duration(seconds: seconds);
     }
-    update();
   }
 
   void startTimer() {
     timer.value = Timer.periodic(Duration(seconds: 1), (_) => addTime());
-    update();
   }
 
   void reset() {
@@ -84,7 +81,6 @@ class HomeController extends GetxController {
     } else {
       duration.value = Duration();
     }
-    update();
   }
 
   @override

@@ -241,137 +241,139 @@ class HomeView extends GetView<HomeController> {
                   color: Colors.grey[200],
                 ),
                 // NOTE: Create Flash Sale
-                Container(
-                  height: 200,
-                  // color: Colors.green,
-                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                'FLASH SALE',
-                                style: TextStyle(
-                                  color: Color(0xffed4d2b),
-                                  fontWeight: FontWeight.bold,
+                Obx(
+                  () => Container(
+                    height: 200,
+                    // color: Colors.green,
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'FLASH SALE',
+                                  style: TextStyle(
+                                    color: Color(0xffed4d2b),
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              buildTime(),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                'Lihat Lainnya',
-                                style: TextStyle(
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                buildTime(),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Lihat Lainnya',
+                                  style: TextStyle(
+                                    color: Colors.grey[500],
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
                                   color: Colors.grey[500],
-                                  fontSize: 12,
+                                  size: 12,
                                 ),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Colors.grey[500],
-                                size: 12,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          physics: ScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 15,
-                          itemBuilder: (context, index) => (index == 15 - 1)
-                              ? Center(
-                                  child: Container(
-                                    margin:
-                                        EdgeInsets.only(left: 24, right: 24),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            physics: ScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: 15,
+                            itemBuilder: (context, index) => (index == 15 - 1)
+                                ? Center(
+                                    child: Container(
+                                      margin:
+                                          EdgeInsets.only(left: 24, right: 24),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.arrow_forward_ios_rounded,
+                                            color: Color(0xffed4d2b),
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          Text(
+                                            'Lihat Semua',
+                                            style: TextStyle(
+                                              color: Color(0xffed4d2b),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    margin: EdgeInsets.only(
+                                      top: 8,
+                                      bottom: 8,
+                                    ),
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
                                       children: [
-                                        Icon(
-                                          Icons.arrow_forward_ios_rounded,
-                                          color: Color(0xffed4d2b),
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          child: Image.network(
+                                            'https://cf.shopee.co.id/file/639ae14a456a915a007295a9d08873e6',
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                         SizedBox(
-                                          height: 16,
+                                          height: 5,
                                         ),
                                         Text(
-                                          'Lihat Semua',
+                                          'Rp5.400',
                                           style: TextStyle(
                                             color: Color(0xffed4d2b),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          width: 100,
+                                          height: 10,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xffe8e8e8),
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '0 TERJUAL',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 10,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                )
-                              : Container(
-                                  margin: EdgeInsets.only(
-                                    top: 8,
-                                    bottom: 8,
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        height: 130,
-                                        width: 130,
-                                        child: Image.network(
-                                          'https://cf.shopee.co.id/file/639ae14a456a915a007295a9d08873e6',
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        'Rp5.400',
-                                        style: TextStyle(
-                                          color: Color(0xffed4d2b),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Container(
-                                        width: 100,
-                                        height: 10,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xffe8e8e8),
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            '0 TERJUAL',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 10,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 // NOTE: PRODUK TERLARIS
