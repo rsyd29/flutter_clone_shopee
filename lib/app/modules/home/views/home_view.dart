@@ -23,29 +23,23 @@ class HomeView extends GetView<HomeController> {
               title: Container(
                 padding: EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.95),
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(4),
                 ),
                 // NOTE: Search Bar
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(Icons.search, color: Colors.grey),
-                    SizedBox(width: 5),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(
-                            color: Color(0xfff0664b),
-                            fontSize: 14,
-                          ),
-                          hintText: 'Shopee Cloning',
-                        ),
-                      ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search, color: Colors.grey),
+                    suffixIcon:
+                        Icon(MdiIcons.cameraOutline, color: Colors.grey),
+                    border: InputBorder.none,
+                    // contentPadding: EdgeInsets.only(),
+                    hintStyle: TextStyle(
+                      color: Color(0xfff0664b),
+                      fontSize: 14,
                     ),
-                    Icon(MdiIcons.cameraOutline, color: Colors.grey),
-                  ],
+                    hintText: 'Shopee Cloning',
+                  ),
                 ),
               ),
               // actions: [
