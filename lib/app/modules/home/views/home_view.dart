@@ -13,6 +13,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     final CarouselController _carouselController = CarouselController();
+    final ScrollController scrollController = ScrollController();
     return Obx(
       () => Scaffold(
         backgroundColor: Colors.white,
@@ -256,292 +257,18 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                   // NOTE: Create Flash Sale
-                  Container(
-                    margin: EdgeInsets.only(top: 8),
-                    height: 10,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    height: Get.height * 0.305,
-                    // color: Colors.green,
-                    margin: EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 8,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'FLASH SALE',
-                                  style: TextStyle(
-                                    color: Color(0xffed4d2b),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                buildTime(),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Lihat Lainnya',
-                                  style: TextStyle(
-                                    color: Colors.grey[500],
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.grey[500],
-                                  size: 12,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            physics: ScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: 16,
-                            itemBuilder: (context, index) => (index == 16 - 1)
-                                ? Center(
-                                    child: Container(
-                                      margin:
-                                          EdgeInsets.only(left: 24, right: 24),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.arrow_forward_ios_rounded,
-                                            color: Color(0xffed4d2b),
-                                          ),
-                                          SizedBox(
-                                            height: 16,
-                                          ),
-                                          Text(
-                                            'Lihat Semua',
-                                            style: TextStyle(
-                                              color: Color(0xffed4d2b),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    margin: EdgeInsets.only(
-                                      top: 8,
-                                      bottom: 8,
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: Get.height * 0.178,
-                                          child: Image.asset(
-                                            'assets/earphone.jpeg',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Column(
-                                          children: [
-                                            Text(
-                                              'Rp5.400',
-                                              style: TextStyle(
-                                                color: Color(0xffed4d2b),
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Container(
-                                              width: Get.height * 0.135,
-                                              padding: EdgeInsets.all(1),
-                                              decoration: BoxDecoration(
-                                                color: Color(0xffe8e8e8),
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                              ),
-                                              child: const Center(
-                                                child: Text(
-                                                  '0 TERJUAL',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 10,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  flashSaleMenu(),
                   // NOTE: PRODUK TERLARIS
-                  Container(
-                    margin: EdgeInsets.only(top: 8),
-                    height: 10,
-                    color: Colors.grey[200],
-                  ),
-                  Container(
-                    height: Get.height * 0.295,
-                    // color: Colors.amber,
-                    margin: EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 8,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  'PRODUK TERLARIS',
-                                  style: TextStyle(
-                                    color: Color(0xffed4d2b),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Lihat Lainnya',
-                                  style: TextStyle(
-                                    color: Colors.grey[500],
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.grey[500],
-                                  size: 12,
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                        Expanded(
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            physics: ScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: 9,
-                            itemBuilder: (context, index) => (index == 9 - 1)
-                                ? Center(
-                                    child: Container(
-                                      margin:
-                                          EdgeInsets.only(left: 24, right: 24),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.arrow_forward_ios_rounded,
-                                            color: Color(0xffed4d2b),
-                                          ),
-                                          SizedBox(
-                                            height: 16,
-                                          ),
-                                          Text(
-                                            'Lihat Semua',
-                                            style: TextStyle(
-                                              color: Color(0xffed4d2b),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                : Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Color(0xffe9e9eb),
-                                      ),
-                                    ),
-                                    margin: EdgeInsets.only(
-                                      top: 8,
-                                      left: (index == 0) ? 0 : 8,
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          height: Get.height * 0.143,
-                                          child: Image.asset(
-                                            'assets/teflon.jpeg',
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            padding: EdgeInsets.all(6),
-                                            width: Get.height * 0.143,
-                                            color: Colors.grey[200],
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Teflon Mini Karakter'),
-                                                SizedBox(height: 8),
-                                                Text(
-                                                  '6RB+ terjual',
-                                                  style: TextStyle(
-                                                    fontSize: 10,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  produkTerlarisMenu(),
                   // NOTE: Create REKOMENDASI
-                  Container(
-                    margin: EdgeInsets.only(top: 8),
-                    height: 10,
-                    color: Colors.grey[200],
+                  Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 8),
+                        height: 10,
+                        color: Colors.grey[200],
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -579,6 +306,293 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget produkTerlarisMenu() {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 8),
+          height: 10,
+          color: Colors.grey[200],
+        ),
+        Container(
+          height: Get.height * 0.295,
+          // color: Colors.amber,
+          margin: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 8,
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'PRODUK TERLARIS',
+                        style: TextStyle(
+                          color: Color(0xffed4d2b),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Lihat Lainnya',
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: 12,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey[500],
+                        size: 12,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 9,
+                  itemBuilder: (context, index) => (index == 9 - 1)
+                      ? Center(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 24, right: 24),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  color: Color(0xffed4d2b),
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Text(
+                                  'Lihat Semua',
+                                  style: TextStyle(
+                                    color: Color(0xffed4d2b),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color(0xffe9e9eb),
+                            ),
+                          ),
+                          margin: EdgeInsets.only(
+                            top: 8,
+                            left: (index == 0) ? 0 : 8,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: Get.height * 0.143,
+                                child: Image.asset(
+                                  'assets/teflon.jpeg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  padding: EdgeInsets.all(6),
+                                  width: Get.height * 0.143,
+                                  color: Colors.grey[200],
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Teflon Mini Karakter'),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        '6RB+ terjual',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget flashSaleMenu() {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 8),
+          height: 10,
+          color: Colors.grey[200],
+        ),
+        Container(
+          height: Get.height * 0.305,
+          // color: Colors.green,
+          margin: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 8,
+          ),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'FLASH SALE',
+                        style: TextStyle(
+                          color: Color(0xffed4d2b),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      buildTime(),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Lihat Lainnya',
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: 12,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.grey[500],
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 16,
+                  itemBuilder: (context, index) => (index == 16 - 1)
+                      ? Center(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 24, right: 24),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  color: Color(0xffed4d2b),
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Text(
+                                  'Lihat Semua',
+                                  style: TextStyle(
+                                    color: Color(0xffed4d2b),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : Container(
+                          margin: EdgeInsets.only(
+                            top: 8,
+                            bottom: 8,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: Get.height * 0.178,
+                                child: Image.asset(
+                                  'assets/earphone.jpeg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Rp5.400',
+                                    style: TextStyle(
+                                      color: Color(0xffed4d2b),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Container(
+                                    width: Get.height * 0.135,
+                                    padding: EdgeInsets.all(1),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xffe8e8e8),
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: const Center(
+                                      child: Text(
+                                        '0 TERJUAL',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
