@@ -5,6 +5,7 @@ import 'package:flutter_clone_shopee/model_promo.dart';
 
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:scroll_indicator/scroll_indicator.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -253,6 +254,43 @@ class HomeView extends GetView<HomeController> {
                             bottomRight: Radius.circular(20),
                           ),
                         ),
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            height: Get.height * 0.265,
+                            // color: Colors.blue,
+                            child: GridView.builder(
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2),
+                              itemCount: 24,
+                              controller: scrollController,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return Center(
+                                  child: Text('Item $index'),
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          ScrollIndicator(
+                            scrollController: scrollController,
+                            width: 15,
+                            height: 4,
+                            indicatorWidth: 10,
+                            alignment: Alignment.bottomCenter,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(3),
+                            ),
+                            indicatorDecoration: BoxDecoration(
+                              color: Color(0xffed4d2b),
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
