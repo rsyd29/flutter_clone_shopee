@@ -123,7 +123,6 @@ class HomeView extends GetView<HomeController> {
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 16),
                         padding: EdgeInsets.all(8),
-                        height: 50,
                         decoration: BoxDecoration(
                           color: Color(0xffffffff),
                           borderRadius: BorderRadius.circular(5),
@@ -241,6 +240,7 @@ class HomeView extends GetView<HomeController> {
             SliverToBoxAdapter(
               child: Column(
                 children: [
+                  // NOTE: Create sub menu
                   Stack(
                     children: [
                       Container(
@@ -251,17 +251,16 @@ class HomeView extends GetView<HomeController> {
                             bottomLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20),
                           ),
-                          border: Border.all(color: Colors.white),
                         ),
                       ),
                     ],
                   ),
+                  // NOTE: Create Flash Sale
                   Container(
                     margin: EdgeInsets.only(top: 8),
                     height: 10,
                     color: Colors.grey[200],
                   ),
-                  // NOTE: Create Flash Sale
                   Container(
                     height: Get.height * 0.305,
                     // color: Colors.green,
@@ -377,7 +376,7 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                             Container(
                                               width: Get.height * 0.135,
-                                              height: 10,
+                                              padding: EdgeInsets.all(1),
                                               decoration: BoxDecoration(
                                                 color: Color(0xffe8e8e8),
                                                 borderRadius:
@@ -403,12 +402,12 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                   ),
+                  // NOTE: PRODUK TERLARIS
                   Container(
                     margin: EdgeInsets.only(top: 8),
                     height: 10,
                     color: Colors.grey[200],
                   ),
-                  // NOTE: PRODUK TERLARIS
                   Container(
                     height: Get.height * 0.295,
                     // color: Colors.amber,
