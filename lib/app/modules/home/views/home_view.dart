@@ -305,9 +305,9 @@ class HomeView extends GetView<HomeController> {
                           SizedBox(height: 5),
                           ScrollIndicator(
                             scrollController: scrollController,
-                            width: 15,
-                            height: 4,
-                            indicatorWidth: 10,
+                            width: Get.width * 0.05,
+                            height: Get.height * 0.005,
+                            indicatorWidth: Get.width * 0.02,
                             alignment: Alignment.bottomCenter,
                             decoration: BoxDecoration(
                               color: Colors.grey[300],
