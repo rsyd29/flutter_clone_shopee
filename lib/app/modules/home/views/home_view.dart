@@ -248,7 +248,7 @@ class HomeView extends GetView<HomeController> {
                       Container(
                         height: Get.height * 0.3,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          // color: Colors.red,
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(20),
                             bottomRight: Radius.circular(20),
@@ -263,13 +263,41 @@ class HomeView extends GetView<HomeController> {
                             child: GridView.builder(
                               gridDelegate:
                                   SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2),
+                                crossAxisCount: 2,
+                              ),
                               itemCount: 24,
                               controller: scrollController,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                return Center(
-                                  child: Text('Item $index'),
+                                return Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.all(8),
+                                      padding: EdgeInsets.all(6),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                          color: Color(0xffe9e9eb),
+                                        ),
+                                      ),
+                                      child: Image.asset(
+                                        'assets/shopee-logo.png',
+                                        height: Get.height * 0.04,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'Shopee Clone',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Colors.black,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
                                 );
                               },
                             ),
@@ -351,7 +379,7 @@ class HomeView extends GetView<HomeController> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 8),
+          margin: EdgeInsets.only(top: 4),
           height: 10,
           color: Colors.grey[200],
         ),
@@ -489,7 +517,6 @@ class HomeView extends GetView<HomeController> {
     return Column(
       children: [
         Container(
-          margin: EdgeInsets.only(top: 8),
           height: 10,
           color: Colors.grey[200],
         ),
