@@ -17,7 +17,7 @@ class HomeView extends GetView<HomeController> {
     final ScrollController scrollController = ScrollController();
     return Obx(
       () => Scaffold(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[100],
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
@@ -327,49 +327,90 @@ class HomeView extends GetView<HomeController> {
                   // NOTE: PRODUK TERLARIS
                   produkTerlarisMenu(),
                   // NOTE: Create REKOMENDASI
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //     Container(
-                  //       margin: EdgeInsets.only(top: 8),
-                  //       height: 10,
-                  //       color: Colors.grey[200],
-                  //     ),
-                  //     Container(
-                  //       margin: EdgeInsets.only(
-                  //         left: 16,
-                  //         right: 16,
-                  //         top: 16,
-                  //         bottom: 16,
-                  //       ),
-                  //       color: Colors.white,
-                  //       child: Text(
-                  //         'REKOMENDASI',
-                  //         style: TextStyle(
-                  //           color: Color(0xffed4d2b),
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 18,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Container(
-                  //       height: Get.height * 0.1,
-                  //       width: Get.width,
-                  //       color: Colors.grey[200],
-                  //     ),
-                  //     Expanded(
-                  //       child: ListView.builder(
-                  //         scrollDirection: Axis.horizontal,
-                  //         physics: ScrollPhysics(),
-                  //         shrinkWrap: true,
-                  //         itemCount: 9,
-                  //         itemBuilder: (context, index) {
-                  //           return Text('Test $index');
-                  //         },
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
+                  Column(
+                    children: [
+                      Container(
+                        height: 10,
+                        color: Colors.grey[100],
+                      ),
+                      Container(
+                        height: Get.height * 0.215,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  top: 16.0,
+                                  left: 8.0,
+                                  right: 8.0,
+                                  bottom: 16.0),
+                              color: Colors.white,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'REKOMENDASI',
+                                    style: TextStyle(
+                                      color: Color(0xffed4d2b),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                physics: ScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: 10,
+                                itemBuilder: (context, index) => Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                      color: (index == 0)
+                                          ? Color(0xffed4d2b)
+                                          : Colors.white,
+                                    ),
+                                    borderRadius: BorderRadius.circular(3),
+                                  ),
+                                  padding: EdgeInsets.all(8),
+                                  margin: EdgeInsets.only(
+                                    left: 4,
+                                    top: 4,
+                                    bottom: 4,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Image.asset(
+                                        'assets/teflon.jpeg',
+                                        fit: BoxFit.cover,
+                                        height: Get.height * 0.05,
+                                      ),
+                                      Text(
+                                        'Semua',
+                                        style: TextStyle(
+                                          color: (index == 0)
+                                              ? Color(0xffed4d2b)
+                                              : Colors.grey[500],
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -414,7 +455,7 @@ class HomeView extends GetView<HomeController> {
       children: [
         Container(
           height: 10,
-          color: Colors.grey[200],
+          color: Colors.grey[100],
         ),
         Container(
           height: Get.height * 0.4,
@@ -515,7 +556,7 @@ class HomeView extends GetView<HomeController> {
                                   child: Container(
                                     padding: EdgeInsets.all(6),
                                     width: Get.height * 0.2,
-                                    color: Colors.grey[200],
+                                    color: Colors.grey[100],
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -553,7 +594,7 @@ class HomeView extends GetView<HomeController> {
       children: [
         Container(
           height: 10,
-          color: Colors.grey[200],
+          color: Colors.grey[100],
         ),
         Container(
           height: Get.height * 0.35,
