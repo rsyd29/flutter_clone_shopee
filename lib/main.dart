@@ -14,7 +14,7 @@ void main() {
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,
       onInit: () => Timer(
-        const Duration(seconds: 5),
+        const Duration(seconds: 3),
         () => Get.offNamed(Routes.HOME),
       ),
     ),
