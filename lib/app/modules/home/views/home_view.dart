@@ -43,7 +43,7 @@ class HomeView extends GetView<HomeController> {
             behavior: ScrollBehavior(),
             child: GlowingOverscrollIndicator(
               axisDirection: AxisDirection.down,
-              color: Color(0xffe74c2d),
+              color: Color(0xffee4d2d),
               child: CustomScrollView(
                 slivers: <Widget>[
                   SliverAppBar(
@@ -65,7 +65,7 @@ class HomeView extends GetView<HomeController> {
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.symmetric(vertical: 11),
                           hintStyle: TextStyle(
-                            color: Color(0xfff0664b),
+                            color: Color(0xffee4d2d),
                             fontSize: 14,
                           ),
                           hintText: 'Shopee Cloning',
@@ -82,7 +82,7 @@ class HomeView extends GetView<HomeController> {
                         child: Icon(MdiIcons.chatProcessingOutline),
                       ),
                     ],
-                    backgroundColor: Color(0xffed4d2b),
+                    backgroundColor: Color(0xffee4d2d),
                     expandedHeight: Get.height * 0.33,
                     flexibleSpace: FlexibleSpaceBar(
                       background: Stack(
@@ -137,7 +137,7 @@ class HomeView extends GetView<HomeController> {
                                         shape: BoxShape.circle,
                                         color: controller.currentSlider ==
                                                 entry.key
-                                            ? Color(0xffed4d2b)
+                                            ? Color(0xffee4d2d)
                                             : Colors.grey[300],
                                       ),
                                     ),
@@ -199,7 +199,7 @@ class HomeView extends GetView<HomeController> {
                                             Icon(
                                               MdiIcons.walletOutline,
                                               size: 16,
-                                              color: Color(0xffff5722),
+                                              color: Color(0xffee4d2d),
                                             ),
                                             SizedBox(
                                               width: 5,
@@ -283,6 +283,126 @@ class HomeView extends GetView<HomeController> {
                           flashSaleMenu(),
                           // NOTE: PRODUK TERLARIS
                           produkTerlarisMenu(),
+                          // NOTE: KATEGORI
+                          Column(
+                            children: [
+                              Container(
+                                height: 10,
+                                color: Colors.grey[100],
+                              ),
+                              Container(
+                                height: Get.height * 0.5,
+                                color: Colors.white,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 16, bottom: 8),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8.0, right: 8.0, bottom: 8.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'KATEGORI',
+                                                  style: TextStyle(
+                                                    color: Color(0xffed4d2b),
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  'Lihat Lainnya',
+                                                  style: TextStyle(
+                                                    color: Colors.grey[500],
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Icon(
+                                                  Icons.arrow_forward_ios,
+                                                  color: Colors.grey[500],
+                                                  size: 12,
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Container(
+                                          // color: Colors.blue,
+                                          child: GridView.builder(
+                                            gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                            ),
+                                            itemCount: 26,
+                                            scrollDirection: Axis.horizontal,
+                                            padding: EdgeInsets.all(3),
+                                            itemBuilder: (context, index) {
+                                              return Container(
+                                                // color: Colors.green,
+                                                margin: EdgeInsets.only(
+                                                  left:
+                                                      (index == 0 || index == 1)
+                                                          ? 8
+                                                          : 4,
+                                                  right: (index == 24 ||
+                                                          index == 25)
+                                                      ? 8
+                                                      : 4,
+                                                  top: 4,
+                                                  bottom: 4,
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      child: Image.asset(
+                                                        'assets/laptop.png',
+                                                        height:
+                                                            Get.height * 0.12,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          top: 8),
+                                                      child: Text(
+                                                        'Komputer & Aksesoris',
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                           // NOTE: Create REKOMENDASI
                           Column(
                             mainAxisSize: MainAxisSize.max,
@@ -553,7 +673,7 @@ class HomeView extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(3),
               ),
               indicatorDecoration: BoxDecoration(
-                color: Color(0xffed4d2b),
+                color: Color(0xffee4d2d),
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
@@ -588,7 +708,7 @@ class HomeView extends GetView<HomeController> {
                           Text(
                             'FLASH SALE',
                             style: TextStyle(
-                              color: Color(0xffed4d2b),
+                              color: Color(0xffee4d2d),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -635,7 +755,7 @@ class HomeView extends GetView<HomeController> {
                                 children: [
                                   Icon(
                                     Icons.arrow_forward_ios_rounded,
-                                    color: Color(0xffed4d2b),
+                                    color: Color(0xffee4d2d),
                                   ),
                                   SizedBox(
                                     height: 16,
@@ -643,7 +763,7 @@ class HomeView extends GetView<HomeController> {
                                   Text(
                                     'Lihat Semua',
                                     style: TextStyle(
-                                      color: Color(0xffed4d2b),
+                                      color: Color(0xffee4d2d),
                                     ),
                                   ),
                                 ],
@@ -673,7 +793,7 @@ class HomeView extends GetView<HomeController> {
                                     Text(
                                       'Rp5.400',
                                       style: TextStyle(
-                                        color: Color(0xffed4d2b),
+                                        color: Color(0xffee4d2d),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
                                       ),
@@ -738,7 +858,7 @@ class HomeView extends GetView<HomeController> {
                           Text(
                             'PRODUK TERLARIS',
                             style: TextStyle(
-                              color: Color(0xffed4d2b),
+                              color: Color(0xffee4d2d),
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
@@ -782,7 +902,7 @@ class HomeView extends GetView<HomeController> {
                                 children: [
                                   Icon(
                                     Icons.arrow_forward_ios_rounded,
-                                    color: Color(0xffed4d2b),
+                                    color: Color(0xffee4d2d),
                                   ),
                                   SizedBox(
                                     height: 16,
@@ -790,7 +910,7 @@ class HomeView extends GetView<HomeController> {
                                   Text(
                                     'Lihat Semua',
                                     style: TextStyle(
-                                      color: Color(0xffed4d2b),
+                                      color: Color(0xffee4d2d),
                                     ),
                                   ),
                                 ],
