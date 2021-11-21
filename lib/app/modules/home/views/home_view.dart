@@ -284,6 +284,7 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
             ),
+            // NOTE: Rekomendasi Menu for Category
             SliverAppBar(
               elevation: 0,
               pinned: true,
@@ -333,20 +334,77 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
             ),
+            // NOTE: Rekomendasi Menu for Shopping Stuff
             SliverGrid(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.72,
+                crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
+              ),
               delegate: SliverChildBuilderDelegate(
                 (ctx, index) {
                   return Container(
                     color: Colors.white,
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Image.asset(
+                            'assets/sandal.jpeg',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Promo 11.11 TERMURAH!!!! Sendal slop JELLY wanita dan pria rebook...infore_bisa bayar di tempat. cod.',
+                              style: TextStyle(
+                                fontSize: 12,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    "Rp",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color(0xffef5739),
+                                    ),
+                                  ),
+                                  Text(
+                                    "2.600",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Color(0xffef5739),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                '10RB+ Terjual',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Color(0xff919191),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 },
                 childCount: 20,
-              ),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                crossAxisSpacing: 4,
-                mainAxisSpacing: 4,
               ),
             )
           ],
