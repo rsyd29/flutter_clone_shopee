@@ -24,6 +24,7 @@ class HomeView extends GetView<HomeController> {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+              elevation: 0,
               pinned: true,
               title: Container(
                 height: 35,
@@ -253,111 +254,25 @@ class HomeView extends GetView<HomeController> {
                     // NOTE: PRODUK TERLARIS
                     produkTerlarisMenu(),
                     // NOTE: Create REKOMENDASI
-                    // Container(
-                    //   child: SafeArea(
-                    //     child: Screen(
-                    //       appBar: Text(
-                    //         'REKOMENDASI',
-                    //         style: TextStyle(
-                    //           color: Color(0xffed4d2b),
-                    //           fontWeight: FontWeight.bold,
-                    //           fontSize: 18,
-                    //         ),
-                    //       ),
-                    //       controllerToHideAppBar: scroolControllerRekomendasi,
-                    //       body: ListView.builder(
-                    //         itemCount: 15,
-                    //         padding: EdgeInsets.zero,
-                    //         controller: scroolControllerRekomendasi,
-                    //         itemBuilder: (_, __) {
-                    //           return Padding(
-                    //             padding: EdgeInsets.symmetric(vertical: 5),
-                    //             child: Container(
-                    //               height: 50,
-                    //               color: Colors.blue[50],
-                    //             ),
-                    //           );
-                    //         },
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Container(
                           height: 10,
                           color: Colors.grey[100],
                         ),
                         Container(
-                          height: Get.height * 0.215,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          padding: const EdgeInsets.only(
+                              top: 16.0, left: 8.0, right: 8.0, bottom: 16.0),
+                          color: Colors.white,
+                          child: Row(
                             children: [
-                              Container(
-                                padding: const EdgeInsets.only(
-                                    top: 16.0,
-                                    left: 8.0,
-                                    right: 8.0,
-                                    bottom: 16.0),
-                                color: Colors.white,
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'REKOMENDASI',
-                                      style: TextStyle(
-                                        color: Color(0xffed4d2b),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  physics: ScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: 10,
-                                  itemBuilder: (context, index) => Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: (index == 0)
-                                            ? Color(0xffed4d2b)
-                                            : Colors.white,
-                                      ),
-                                      borderRadius: BorderRadius.circular(3),
-                                    ),
-                                    padding: EdgeInsets.all(8),
-                                    margin: EdgeInsets.only(
-                                      left: 4,
-                                      top: 4,
-                                      bottom: 4,
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Icon(
-                                          MdiIcons.thumbUp,
-                                          color: Color(0xffed4d2b),
-                                        ),
-                                        Text(
-                                          'Semua',
-                                          style: TextStyle(
-                                            color: (index == 0)
-                                                ? Color(0xffed4d2b)
-                                                : Colors.grey[500],
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.bold,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                              Text(
+                                'REKOMENDASI',
+                                style: TextStyle(
+                                  color: Color(0xffed4d2b),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                 ),
                               ),
                             ],
@@ -369,6 +284,71 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
             ),
+            SliverAppBar(
+              elevation: 0,
+              pinned: true,
+              backgroundColor: Colors.grey[100],
+              flexibleSpace: FlexibleSpaceBar(
+                background: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  physics: ScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 10,
+                  itemBuilder: (context, index) => Container(
+                    width: Get.width * 0.18,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: (index == 0) ? Color(0xffed4d2b) : Colors.white,
+                      ),
+                      borderRadius: BorderRadius.circular(3),
+                    ),
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.only(
+                      left: 4,
+                      top: 4,
+                      bottom: 4,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(
+                          MdiIcons.thumbUp,
+                          color: Color(0xffed4d2b),
+                        ),
+                        Text(
+                          'Semua',
+                          style: TextStyle(
+                            color: (index == 0)
+                                ? Color(0xffed4d2b)
+                                : Colors.grey[500],
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                (ctx, index) {
+                  return Container(
+                    color: Colors.white,
+                  );
+                },
+                childCount: 20,
+              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.7,
+                crossAxisSpacing: 4,
+                mainAxisSpacing: 4,
+              ),
+            )
           ],
         ),
         // NOTE: BottomNavigationBar
