@@ -153,11 +153,11 @@ class HomeView extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(5),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.grey.withOpacity(0.3),
-                                spreadRadius: 3,
-                                blurRadius: 3,
+                                color: Colors.grey.withOpacity(0.1),
+                                spreadRadius: 1,
+                                blurRadius: 2,
                                 offset:
-                                    Offset(0, 2), // changes position of shadow
+                                    Offset(0, 1), // changes position of shadow
                               ),
                             ],
                           ),
