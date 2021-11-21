@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clone_shopee/model_promo.dart';
+import 'package:flutter_clone_shopee/data/model_promo.dart';
 
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -10,7 +10,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../controllers/home_controller.dart';
 
-// ignore: must_be_immutable
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
