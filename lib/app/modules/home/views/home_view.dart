@@ -6,6 +6,7 @@ import 'package:flutter_clone_shopee/model_promo.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:scroll_indicator/scroll_indicator.dart';
+import 'package:scroll_navigation/scroll_navigation.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -15,6 +16,8 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final CarouselController _carouselController = CarouselController();
     final ScrollController scrollController = ScrollController();
+    final ScrollController scroolControllerListView = ScrollController();
+    final ScrollController scroolControllerRekomendasi = ScrollController();
     return Obx(
       () => Scaffold(
         backgroundColor: Colors.grey[100],
@@ -240,178 +243,130 @@ class HomeView extends GetView<HomeController> {
             ),
             // TODO: Create All Body Content
             SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  // NOTE: Create sub menu
-                  Stack(
-                    children: [
-                      Container(
-                        height: Get.height * 0.3,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          // borderRadius: BorderRadius.only(
-                          //   bottomLeft: Radius.circular(20),
-                          //   bottomRight: Radius.circular(20),
-                          // ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // NOTE: Create sub menu
+                    subMenu(scrollController),
+                    // NOTE: Create Flash Sale
+                    flashSaleMenu(),
+                    // NOTE: PRODUK TERLARIS
+                    produkTerlarisMenu(),
+                    // NOTE: Create REKOMENDASI
+                    // Container(
+                    //   child: SafeArea(
+                    //     child: Screen(
+                    //       appBar: Text(
+                    //         'REKOMENDASI',
+                    //         style: TextStyle(
+                    //           color: Color(0xffed4d2b),
+                    //           fontWeight: FontWeight.bold,
+                    //           fontSize: 18,
+                    //         ),
+                    //       ),
+                    //       controllerToHideAppBar: scroolControllerRekomendasi,
+                    //       body: ListView.builder(
+                    //         itemCount: 15,
+                    //         padding: EdgeInsets.zero,
+                    //         controller: scroolControllerRekomendasi,
+                    //         itemBuilder: (_, __) {
+                    //           return Padding(
+                    //             padding: EdgeInsets.symmetric(vertical: 5),
+                    //             child: Container(
+                    //               height: 50,
+                    //               color: Colors.blue[50],
+                    //             ),
+                    //           );
+                    //         },
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    Column(
+                      children: [
+                        Container(
+                          height: 10,
+                          color: Colors.grey[100],
                         ),
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            height: Get.height * 0.265,
-                            // color: Colors.blue,
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                              ),
-                              itemCount: 24,
-                              controller: scrollController,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                        Container(
+                          height: Get.height * 0.215,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(
+                                    top: 16.0,
+                                    left: 8.0,
+                                    right: 8.0,
+                                    bottom: 16.0),
+                                color: Colors.white,
+                                child: Row(
                                   children: [
-                                    Container(
-                                      margin: EdgeInsets.all(8),
-                                      padding: EdgeInsets.all(6),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: Color(0xffe9e9eb),
-                                        ),
-                                      ),
-                                      child: Image.asset(
-                                        'assets/shopee-logo.png',
-                                        height: Get.height * 0.04,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        'Shopee Clone',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Colors.black,
-                                        ),
-                                        textAlign: TextAlign.center,
+                                    Text(
+                                      'REKOMENDASI',
+                                      style: TextStyle(
+                                        color: Color(0xffed4d2b),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
                                       ),
                                     ),
                                   ],
-                                );
-                              },
-                            ),
-                          ),
-                          SizedBox(height: 5),
-                          ScrollIndicator(
-                            scrollController: scrollController,
-                            width: Get.width * 0.05,
-                            height: Get.height * 0.005,
-                            indicatorWidth: Get.width * 0.02,
-                            alignment: Alignment.bottomCenter,
-                            decoration: BoxDecoration(
-                              color: Colors.grey[300],
-                              borderRadius: BorderRadius.circular(3),
-                            ),
-                            indicatorDecoration: BoxDecoration(
-                              color: Color(0xffed4d2b),
-                              borderRadius: BorderRadius.circular(2),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  // NOTE: Create Flash Sale
-                  flashSaleMenu(),
-                  // NOTE: PRODUK TERLARIS
-                  produkTerlarisMenu(),
-                  // NOTE: Create REKOMENDASI
-                  Column(
-                    children: [
-                      Container(
-                        height: 10,
-                        color: Colors.grey[100],
-                      ),
-                      Container(
-                        height: Get.height * 0.215,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.only(
-                                  top: 16.0,
-                                  left: 8.0,
-                                  right: 8.0,
-                                  bottom: 16.0),
-                              color: Colors.white,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'REKOMENDASI',
-                                    style: TextStyle(
-                                      color: Color(0xffed4d2b),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                physics: ScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 10,
-                                itemBuilder: (context, index) => Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: (index == 0)
-                                          ? Color(0xffed4d2b)
-                                          : Colors.white,
+                              Expanded(
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  physics: ScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 10,
+                                  itemBuilder: (context, index) => Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        color: (index == 0)
+                                            ? Color(0xffed4d2b)
+                                            : Colors.white,
+                                      ),
+                                      borderRadius: BorderRadius.circular(3),
                                     ),
-                                    borderRadius: BorderRadius.circular(3),
-                                  ),
-                                  padding: EdgeInsets.all(8),
-                                  margin: EdgeInsets.only(
-                                    left: 4,
-                                    top: 4,
-                                    bottom: 4,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Image.asset(
-                                        'assets/teflon.jpeg',
-                                        fit: BoxFit.cover,
-                                        height: Get.height * 0.05,
-                                      ),
-                                      Text(
-                                        'Semua',
-                                        style: TextStyle(
-                                          color: (index == 0)
-                                              ? Color(0xffed4d2b)
-                                              : Colors.grey[500],
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                          overflow: TextOverflow.ellipsis,
+                                    padding: EdgeInsets.all(8),
+                                    margin: EdgeInsets.only(
+                                      left: 4,
+                                      top: 4,
+                                      bottom: 4,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Icon(
+                                          MdiIcons.thumbUp,
+                                          color: Color(0xffed4d2b),
                                         ),
-                                      ),
-                                    ],
+                                        Text(
+                                          'Semua',
+                                          style: TextStyle(
+                                            color: (index == 0)
+                                                ? Color(0xffed4d2b)
+                                                : Colors.grey[500],
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.bold,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -450,140 +405,81 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget produkTerlarisMenu() {
-    return Column(
+  Widget subMenu(ScrollController scrollController) {
+    return Stack(
       children: [
         Container(
-          height: 10,
-          color: Colors.grey[100],
+          height: Get.height * 0.3,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            // borderRadius: BorderRadius.only(
+            //   bottomLeft: Radius.circular(20),
+            //   bottomRight: Radius.circular(20),
+            // ),
+          ),
         ),
-        Container(
-          height: Get.height * 0.4,
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16, bottom: 8),
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
+          children: [
+            Container(
+              height: Get.height * 0.265,
+              // color: Colors.blue,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                ),
+                itemCount: 24,
+                controller: scrollController,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            'PRODUK TERLARIS',
-                            style: TextStyle(
-                              color: Color(0xffed4d2b),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
+                      Container(
+                        margin: EdgeInsets.all(8),
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                            color: Color(0xffe9e9eb),
                           ),
-                        ],
+                        ),
+                        child: Image.asset(
+                          'assets/shopee-logo.png',
+                          height: Get.height * 0.04,
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'Lihat Lainnya',
-                            style: TextStyle(
-                              color: Colors.grey[500],
-                              fontSize: 12,
-                            ),
+                      Expanded(
+                        child: Text(
+                          'Shopee Clone',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.black,
                           ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.grey[500],
-                            size: 12,
-                          )
-                        ],
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
-                  ),
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    physics: ScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 9,
-                    itemBuilder: (context, index) => (index == 9 - 1)
-                        ? Center(
-                            child: Container(
-                              margin: EdgeInsets.only(left: 24, right: 24),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.arrow_forward_ios_rounded,
-                                    color: Color(0xffed4d2b),
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Text(
-                                    'Lihat Semua',
-                                    style: TextStyle(
-                                      color: Color(0xffed4d2b),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        : Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xffe9e9eb),
-                              ),
-                            ),
-                            margin: EdgeInsets.only(
-                              left: 8,
-                            ),
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: Get.height * 0.2,
-                                  child: Image.asset(
-                                    'assets/teflon.jpeg',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Container(
-                                    padding: EdgeInsets.all(6),
-                                    width: Get.height * 0.2,
-                                    color: Colors.grey[100],
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('Teflon Mini Karakter'),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          '6RB+ terjual',
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                  ),
-                ),
-              ],
+                  );
+                },
+              ),
             ),
-          ),
+            SizedBox(height: 5),
+            ScrollIndicator(
+              scrollController: scrollController,
+              width: Get.width * 0.05,
+              height: Get.height * 0.005,
+              indicatorWidth: Get.width * 0.02,
+              alignment: Alignment.bottomCenter,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(3),
+              ),
+              indicatorDecoration: BoxDecoration(
+                color: Color(0xffed4d2b),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -725,6 +621,145 @@ class HomeView extends GetView<HomeController> {
                                       ),
                                     ),
                                   ],
+                                ),
+                              ],
+                            ),
+                          ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget produkTerlarisMenu() {
+    return Column(
+      children: [
+        Container(
+          height: 10,
+          color: Colors.grey[100],
+        ),
+        Container(
+          height: Get.height * 0.4,
+          color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16, bottom: 8),
+            child: Column(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'PRODUK TERLARIS',
+                            style: TextStyle(
+                              color: Color(0xffed4d2b),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Lihat Lainnya',
+                            style: TextStyle(
+                              color: Colors.grey[500],
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.grey[500],
+                            size: 12,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: ScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 9,
+                    itemBuilder: (context, index) => (index == 9 - 1)
+                        ? Center(
+                            child: Container(
+                              margin: EdgeInsets.only(left: 24, right: 24),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.arrow_forward_ios_rounded,
+                                    color: Color(0xffed4d2b),
+                                  ),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+                                  Text(
+                                    'Lihat Semua',
+                                    style: TextStyle(
+                                      color: Color(0xffed4d2b),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Color(0xffe9e9eb),
+                              ),
+                            ),
+                            margin: EdgeInsets.only(
+                              left: 8,
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.2,
+                                  child: Image.asset(
+                                    'assets/teflon.jpeg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    padding: EdgeInsets.all(6),
+                                    width: Get.height * 0.2,
+                                    color: Colors.grey[100],
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Teflon Mini Karakter'),
+                                        SizedBox(height: 8),
+                                        Text(
+                                          '6RB+ terjual',
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
